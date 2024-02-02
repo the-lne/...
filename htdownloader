@@ -1,0 +1,32 @@
+#!/bin/python3
+
+# create an application that takes the index.hmtl, formats it, and parses for other files to download
+
+# input:  domain name
+# output: a sites dom.html and the associated files that come with it
+
+import os
+import sys
+
+
+def help():
+    print("Offline webapp viewer.\ndeps:\n\twget\n\tpython3 -> modern python")
+    print("\nUsage:", sys.argv[0], "domain /path/to/output_dir")
+    exit()
+
+def main():
+    if (len(sys.argv) < 2 or sys.argv[1] == "-h"):
+        help()
+    domain = "wget " + sys.argv[1]
+    os.system(domain)
+
+
+    #file = open(sys.argv[1])
+
+    # todo
+    # argv[1] is the domain name
+    # argv[2] is the output dir
+
+
+if __name__ == "__main__":
+    main()
