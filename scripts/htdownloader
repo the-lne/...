@@ -1,4 +1,6 @@
-#!/bin/python3
+#!/path/to/venv/bin/python3
+
+# https://docs.python.org/3/library/venv.html
 
 # I firmly believe that complexity should be avoided until it interferes with efficiency... and usually, efficiency isn't an issue until scaling becomes unavoidable.
 
@@ -16,7 +18,7 @@ import sys
 
 
 def help():
-    print("Offline webapp viewer.\ndeps:\n\twget\n\t/dev/python3 -> modern_python\n\nlibs:\n\ttextparser")
+    print("Offline webapp viewer.\ndeps:\n\twget\n\t/bin/python3 -> modern_python*\n\nlibs:\n\ttextparser")
     print("\nUsage:", sys.argv[0], "domain /path/to/output_dir")
     print("Unless otherwise specified, the default output directory will be named after the domain.")
 
@@ -31,20 +33,19 @@ def main():
     domain_name = sys.argv[1]
     output_dir  = sys.argv[1]
 
-    # unless the user specifies otherwise, the output_dir name = name of web app you are 'testing'
+    # unless the user specifies otherwise, the output_dir name = name of web application
     if (len(sys.argv) == 3):
         output_dir = sys.argv[2]
 
-    # does the user supplied dir even exist?
-    if (os.system("ls -alF " + output_dir + " > /dev/null 2>&1") != 0):
+    if (os.system("ls " + output_dir + " > /dev/null 2>&1") != 0):
         print("Directory '" + output_dir + "' does not exist yet, let's change that.")
         os.system("mkdir " + output_dir)
 
-    # get the domain
+    # get the dom
     domain = "wget " + domain_name + " -P " + output_dir
     os.system(domain)
 
-
+    
 
 
 
