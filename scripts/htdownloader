@@ -1,0 +1,64 @@
+#!/bin/python3
+
+# I firmly believe that complexity should be avoided until it interferes with efficiency... and usually, efficiency isn't an issue until scaling becomes unavoidable.
+
+# create an application that takes the index.hmtl, formats it, and parses for other files to download
+
+# input:  domain name
+# output: a sites dom.html and the associated files that come with it
+
+
+# don't forget to check server logs and see what kind of useragent this is. i want it to look like someone is visiting the website. the quieter you become the more you are able to hear right? or is kali linux a complete shill
+# which actually means that there should be some sort of config file that you edit with a ./argv[0] --config-metadata
+
+import os
+import sys
+
+
+def help():
+    print("Offline webapp viewer.\ndeps:\n\twget\n\t/dev/python3 -> modern_python\n\nlibs:\n\ttextparser")
+    print("\nUsage:", sys.argv[0], "domain /path/to/output_dir")
+    print("Unless otherwise specified, the default output directory will be named after the domain.")
+
+def main():
+
+    # error checking
+    if (len(sys.argv) < 2 or len(sys.argv) > 3 or sys.argv[1] == "-h"):
+        help()
+        exit()
+
+    app_name    = sys.argv[0]
+    domain_name = sys.argv[1]
+    output_dir  = sys.argv[1]
+
+    # unless the user specifies otherwise, the output_dir name = name of web app you are 'testing'
+    if (len(sys.argv) == 3):
+        output_dir = sys.argv[2]
+
+    # does the user supplied dir even exist?
+    if (os.system("ls -alF " + output_dir + " > /dev/null 2>&1") != 0):
+        print("Directory '" + output_dir + "' does not exist yet, let's change that.")
+        os.system("mkdir " + output_dir)
+
+    # get the domain
+    domain = "wget " + domain_name + " -P " + output_dir
+    os.system(domain)
+
+
+
+
+
+    # next, parse index.html using textparser
+        # format it, and pull strings that are either absolute or relative values of the other files such as the css and javascript
+
+
+
+
+
+    # todo
+    # argv[1] is the domain name
+    # argv[2] is the output dir
+
+
+if __name__ == "__main__":
+    main()
