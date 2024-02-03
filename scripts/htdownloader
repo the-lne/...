@@ -1,4 +1,4 @@
-#!/path/to/venv/bin/python3
+#!/bin/python3
 
 # https://docs.python.org/3/library/venv.html
 
@@ -15,7 +15,6 @@
 
 import os
 import sys
-
 
 def help():
     print("Offline webapp viewer.\ndeps:\n\twget\n\t/bin/python3 -> modern_python*\n\nlibs:\n\ttextparser")
@@ -45,7 +44,26 @@ def main():
     domain = "wget " + domain_name + " -P " + output_dir
     os.system(domain)
 
-    
+
+    # next i need to dynamically get the name of the file that was just downloaded and save it as a variable so i can open it
+    print("here is the output")
+    os.system("ls " + output_dir + " > domfilename")
+
+
+    # dynamically saving the file name as a string but the problem is, it has a \n at the end for some reason 
+    # this might help https://codedamn.com/news/python/remove-newline-from-string
+    # okay the problem is that domfile is automatically created into some type of io object instead of a string, so taking away the \n can't happen yet. the string method will work once you convert it to a string
+    with open("domfilename", "r") as file:
+        #domfile = file.read()
+        #domfile = file.strip()
+        #domfile = type(str(domfile))
+
+    #print(domfile)
+
+
+    #f = open(output_dir + "/" + domfile, "r")
+    #print(f.read())
+
 
 
 
